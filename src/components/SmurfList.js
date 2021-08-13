@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import Smurf from './Smurf';
 
  const SmurfList = (props) => {
-    const { smurfs, isLoading } = props
+    const { smurfs, isLoading, fetchError } = props
 
+    if (fetchError) {
+        return <h1>Couldn't fetch the Smurfs, what a smurfing shame</h1>;
+    
+    }
     if (isLoading) {
         return <h1>Loading...</h1>;
     }
@@ -23,6 +27,7 @@ const mapStateToProps = (state) => {
     return {
         smurfs: state.smurfs,
         isLoading: state.isLoading,
+        fetchError: state.fetchError
     }
 }
 

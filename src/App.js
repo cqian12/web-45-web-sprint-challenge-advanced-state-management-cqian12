@@ -7,10 +7,10 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-import { fetchSmurfs } from './actions'
+import { fetchSmurfs } from './actions' 
 
 class App extends Component {
-  componentDidMount() {
+  componentDidMount() { 
     this.props.fetchSmurfs()
   }
 
@@ -20,7 +20,7 @@ class App extends Component {
         <Header />
 
         <main>
-          <SmurfList/>
+          <SmurfList/> 
           <AddForm/>
         </main>
       </div>

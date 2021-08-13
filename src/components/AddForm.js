@@ -56,7 +56,7 @@ const AddForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        errorMessage: state.error
+        errorMessage: state.errorMessage
     }
 }
 

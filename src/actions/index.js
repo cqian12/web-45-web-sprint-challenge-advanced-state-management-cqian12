@@ -11,7 +11,7 @@ export const fetchSmurfs = () => {
         dispatch(fetchStart())
         axios.get('http://localhost:3333/smurfs')
         .then(res => {
-            console.log(res.data)
+            //console.log(res.data) - uncomment if need to see data
             dispatch(fetchSuccess(res.data))
         })
         .catch(err => fetchFail(err))
@@ -31,15 +31,10 @@ export const fetchFail = (error) => {
 }
 
 export const addSmurf = (smurf) => {
-    console.log(smurf.name)
-    console.log(smurf.nickname)
-    console.log(smurf.position)
-    console.log(smurf.description)
     return ({type:ADD_SMURF, payload:smurf})
 }
 
 export const setError = (error) => {
-    console.log(error)
     return ({type:SET_ERROR, payload:error})
 }
 

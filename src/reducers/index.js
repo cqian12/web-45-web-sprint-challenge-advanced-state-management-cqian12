@@ -3,8 +3,10 @@ import { FETCH_FAIL, FETCH_SUCCESS, FETCH_START, SET_ERROR, ADD_SMURF } from "..
 export const initialState = {
     smurfs:[],
     isLoading:false,
-    error:''
+    fetchError:'',
+    errorMessage:''
 }
+//added a separate value, fetchError, to set to any errors that occur during the axios call; this is to distinguish from the error message from an incorrect form submission on AddForm
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
@@ -15,11 +17,12 @@ const reducer = (state = initialState, action) => {
         case(FETCH_FAIL):
             return ({...state,isLoading:false,error:action.payload})
         case(SET_ERROR):
-            return ({...state,error:action.payload})
+            return ({...state,errorMessage:action.payload})
         case(ADD_SMURF):
             const newSmurf = {
                 ...action.payload, id: Date.now()
             }
+            //randomly generates an id for the new smurf object 
             return ({...state,smurfs:[...state.smurfs,newSmurf]}) 
         default:
             return state
