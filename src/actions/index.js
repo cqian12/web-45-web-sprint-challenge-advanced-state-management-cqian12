@@ -3,14 +3,16 @@ import axios from 'axios';
 export const FETCH_START = 'FETCH_START'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAIL = 'FETCH_FAIL'
+export const ADD_SMURF = 'ADD_SMURF'
+export const SET_ERROR = 'SET_ERROR'
 
 export const fetchSmurfs = () => {
     return (dispatch) => {
         dispatch(fetchStart())
         axios.get('http://localhost:3333/smurfs')
         .then(res => {
-            console.log(res.data.results)
-            dispatch(fetchSuccess(res.data.results))
+            console.log(res.data)
+            dispatch(fetchSuccess(res.data))
         })
         .catch(err => fetchFail(err))
     }
@@ -20,12 +22,25 @@ export const fetchStart = () => {
     return ({type:FETCH_START})
 }
 
-export const fetchSuccess = (smurf) => {
-    return ({type:FETCH_SUCCESS, payload:smurf})
+export const fetchSuccess = (smurfs) => {
+    return ({type:FETCH_SUCCESS, payload:smurfs})
 }
 
 export const fetchFail = (error) => {
     return ({type:FETCH_FAIL, payload:error})
+}
+
+export const addSmurf = (smurf) => {
+    console.log(smurf.name)
+    console.log(smurf.nickname)
+    console.log(smurf.position)
+    console.log(smurf.description)
+    return ({type:ADD_SMURF, payload:smurf})
+}
+
+export const setError = (error) => {
+    console.log(error)
+    return ({type:SET_ERROR, payload:error})
 }
 
 //Task List:
